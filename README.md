@@ -19,7 +19,7 @@ MAS (Monotonic Alignment Search) from GlowTTS. This can be used to get the align
 from aligner_pytorch import mas 
 
 sim = torch.rand(1, 4, 6) # [batch_size, m_rows, n_cols]
-alignment = mas(x)
+alignment = mas(sim)
 
 """
 sim = tensor([[
