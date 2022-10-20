@@ -1,3 +1,6 @@
+
+# Aligner - PyTorch 
+
 Sequence alignement methods with helpers for PyTorch. 
 
 ## Install
