@@ -22,7 +22,7 @@ setup(
         "einops>=0.4",
         "einops-exts>=0.0.3"
     ],
-    ext_modules=cythonize(["aligner_pytorch/mas_c.pyx"]),
+    ext_modules=cythonize(["*.pyx"]),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
