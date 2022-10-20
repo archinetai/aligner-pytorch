@@ -1,5 +1,5 @@
 from setuptools import Extension, find_packages, setup
-from Cython.Build import cythonize, build_ext
+from Cython.Build import cythonize
 
 with open("README.md", 'r') as f:
     long_description = f.read()
@@ -7,7 +7,7 @@ with open("README.md", 'r') as f:
 setup(
     name="aligner-pytorch",
     packages=find_packages(exclude=[]),
-    version="0.0.1",
+    version="0.0.2",
     license="MIT",
     description="Aligner - PyTorch",
     long_description=long_description, 
@@ -22,8 +22,7 @@ setup(
         "einops>=0.4",
         "einops-exts>=0.0.3"
     ],
-    extensions=[Extension("*", ["*.pyx"])],
-    cmdclass={'build_ext': build_ext},
+    ext_modules=cythonize("aligner_pytorch/*.pyx"),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
