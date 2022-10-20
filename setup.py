@@ -1,14 +1,9 @@
-import numpy
 from Cython.Build import cythonize
 from setuptools import find_packages, setup
 
 with open("README.md", "r") as f:
     long_description = f.read()
 
-ext_modules = cythonize(
-    ["aligner_pytorch/mas_c.pyx"],
-    compiler_directives={"language_level": "3"},
-)
 
 setup(
     name="aligner-pytorch",
@@ -29,8 +24,8 @@ setup(
         "einops>=0.4",
         "einops-exts>=0.0.3",
     ],
-    include_dirs=[numpy.get_include(), "monotonic_align"],
-    ext_modules=cythonize(ext_modules),
+    include_dirs=["."],
+    ext_modules=cythonize(["aligner_pytorch/*.pyx"]),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
