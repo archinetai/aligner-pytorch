@@ -7,8 +7,8 @@ with open("README.md", "r") as f:
 
 setup(
     name="aligner-pytorch",
-    packages=find_packages(exclude=[]),
-    version="0.0.2",
+    version="0.0.14",
+    packages=find_packages(),
     license="MIT",
     description="Aligner - PyTorch",
     long_description=long_description,
@@ -18,14 +18,14 @@ setup(
     url="https://github.com/archinetai/audio-diffusion-pytorch",
     keywords=["artificial intelligence", "deep learning", "TTS", "alignment"],
     install_requires=[
-        "numpy",
         "torch>=1.6",
         "data-science-types>=0.2",
         "einops>=0.4",
         "einops-exts>=0.0.3",
     ],
-    include_dirs=["."],
-    ext_modules=cythonize(["aligner_pytorch/*.pyx"]),
+    setup_requires=["cython"],
+    include_dirs=["aligner_pytorch"],
+    ext_modules=cythonize(["aligner_pytorch/mas_c.pyx"]),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
