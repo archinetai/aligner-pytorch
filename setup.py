@@ -1,5 +1,5 @@
-from Cython.Build import cythonize
 from setuptools import find_packages, setup
+from Cython.Build import cythonize
 
 with open("README.md", "r") as f:
     long_description = f.read()

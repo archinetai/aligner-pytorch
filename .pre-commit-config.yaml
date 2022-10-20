@@ -14,14 +14,6 @@ repos:
             '--experimental-string-processing'
         ]
 
-# Sorts imports
--   repo: https://github.com/pycqa/isort
-    rev: 5.10.1
-    hooks:
-    -   id: isort
-        name: isort (python)
-        args: ["--profile", "black"]
-
 # Checks unused imports, like lengths, etc
 -   repo: https://gitlab.com/pycqa/flake8
     rev: 4.0.0

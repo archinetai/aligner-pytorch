@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+aligner_pytorch/__init__.py
+aligner_pytorch/mas.py
+aligner_pytorch/mas_c.c
+aligner_pytorch.egg-info/PKG-INFO
+aligner_pytorch.egg-info/SOURCES.txt
+aligner_pytorch.egg-info/dependency_links.txt
+aligner_pytorch.egg-info/requires.txt
+aligner_pytorch.egg-info/top_level.txt

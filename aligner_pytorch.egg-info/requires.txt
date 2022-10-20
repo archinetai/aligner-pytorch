@@ -1,0 +1,5 @@
+numpy
+torch>=1.6
+data-science-types>=0.2
+einops>=0.4
+einops-exts>=0.0.3
