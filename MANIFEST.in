@@ -1,1 +1,1 @@
-include aligner_pytorch/__init__.pxd
+include aligner_pytorch/*.*

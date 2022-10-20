@@ -7,7 +7,7 @@ from typing import Optional
 def mas(x: Tensor, mask: Optional[Tensor] = None) -> Tensor:
     b, m, n, device = *x.shape, x.device
 
-    values = x.clone().to(dtype=torch.float32, device="cpu").numpy()
+    values = x.detach().clone().to(dtype=torch.float32, device="cpu").numpy()
     paths = torch.zeros_like(x, dtype=torch.int32, device="cpu").numpy()
 
     ms = torch.tensor([m], dtype=torch.int32).repeat(b).numpy()
