@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="aligner-pytorch",
-    version="0.0.17",
+    version="0.0.18",
     packages=find_packages(),
     license="MIT",
     description="Aligner - PyTorch",

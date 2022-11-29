@@ -1,7 +1,7 @@
 
-# Aligner - PyTorch 
+# Aligner - PyTorch
 
-Sequence alignement methods with helpers for PyTorch. 
+Sequence alignement methods with helpers for PyTorch.
 
 ## Install
 
@@ -16,12 +16,12 @@ pip install aligner-pytorch
 
 ### MAS
 
-MAS (Monotonic Alignment Search) from GlowTTS. This can be used to get the alignment of any (similarity) matrix. Implementation in optimized Cython. 
+MAS (Monotonic Alignment Search) from GlowTTS. This can be used to get the alignment of any (similarity) matrix. Implementation in optimized Cython.
 
 ```py
-from aligner_pytorch import mas 
+from aligner_pytorch import mas
 
-sim = torch.rand(1, 4, 6) # [batch_size, m_rows, n_cols]
+sim = torch.rand(1, 4, 6) # [batch_size, x_length, y_length]
 alignment = mas(sim)
 
 """
@@ -41,9 +41,55 @@ alignment = tensor([[
 """
 ```
 
+### XY Embedding to Alignment
+Used during training to get the alignement of a `x_embedding` with `y_embedding`, computes the log probability from a normal distribution and the alignment with MAS.
+```py
+from aligner_pytorch import get_alignment_from_embeddings
+
+x_embedding = torch.randn(1, 4, 10)
+y_embedding = torch.randn(1, 6, 10)
+
+alignment = get_alignment_from_embeddings(
+    x_embedding=torch.randn(1, 4, 10),  # [batch_size, x_length, features]
+    y_embedding=torch.randn(1, 6, 10),  # [batch_size, y_length, features]
+)                                       # [batch_size, x_length, y_length]
+
+"""
+alignment = tensor([[
+    [1, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 1, 1, 1]
+]], dtype=torch.int32)
+"""
+```
+
+### Duration Embedding to Alignment
+Used during inference to compute the alignment from a trained duration embedding.
+```py
+from aligner_pytorch import get_alignment_from_duration_embedding
+
+alignment = get_alignment_from_duration_embedding(
+    embedding=torch.randn(1, 5),    # Embedding: [batch_size, x_length]
+    scale=1.0,                      # Duration scale
+    y_length=10                     # (Optional) fixes maximum output y_length
+)                                   # Output alignment [batch_size, x_length, y_length]
+
+"""
+alignment  = tensor([[
+    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+]])
+"""
+```
+
+
 ## Citations
 
-Monotonic Alignment Search 
+Monotonic Alignment Search
 ```bibtex
 @misc{2005.11129,
 Author = {Jaehyeon Kim and Sungwon Kim and Jungil Kong and Sungroh Yoon},
